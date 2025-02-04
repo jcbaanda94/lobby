@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Baanda - Better Together</title>
+  <style>
+    /* ---------------------------------------------------
+       GLOBAL RESET & BASIC TYPOGRAPHY
+    --------------------------------------------------- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    html {
+      font-size: 100%;
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+      color: #333;
+      background: #f5f6f7 /* fallback */;
+      /* Subtle pattern / gradient to add a professional texture */
+      background-image: radial-gradient(rgba(0,0,0,0.03) 2%, transparent 2%), 
+                        radial-gradient(rgba(0,0,0,0.03) 2%, transparent 2%);
+      background-position: 0 0, 50px 50px;
+      background-size: 100px 100px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ---------------------------------------------------
+       HEADER
+       Sticky header so it remains visible on scroll
+    --------------------------------------------------- */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      background-color: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(5px);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.75rem 1.5rem;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+    }
+    .logo-area {
+      display: flex;
+      align-items: center;
+    }
+    .header-logo {
+      height: 40px;
+      width: auto;
+      margin-right: 0.75rem;
+    }
+    .nav-links a {
+      margin-left: 1.5rem;
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+      transition: color 0.2s, opacity 0.2s;
+    }
+    .nav-links a:hover {
+      color: #008f75;
+      opacity: 0.85;
+    }
+
+    /* ---------------------------------------------------
+       MAIN WRAPPER
+    --------------------------------------------------- */
+    main {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1rem;
+    }
+    .content-container {
+      background-color: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+      max-width: 900px;
+      width: 100%;
+      padding: 2rem;
+      text-align: center;
+      margin-bottom: 2rem; /* Space above footer */
+    }
+
+    /* Centered Baanda Logo at top of card (optional) */
+    .center-logo {
+      width: 150px;
+      height: auto;
+      margin: 0 auto 1rem;
+      display: block;
+    }
+
+    /* Headline text / welcome message */
+    .welcome-text {
+      max-width: 600px;
+      margin: 1rem auto 2rem;
+      color: #555;
+      line-height: 1.6;
+      font-size: 1rem;
+    }
+
+    /* ---------------------------------------------------
+       CTA GRID LAYOUT
+    --------------------------------------------------- */
+    .cta-grid {
+      display: grid;
+      grid-gap: 1rem;
+      grid-template-columns: 2fr 1fr; /* Bazaar larger, others narrower */
+      margin: 0 auto;
+      max-width: 800px;
+    }
+    @media (max-width: 700px) {
+      .cta-grid {
+        grid-template-columns: 1fr; /* stack on mobile */
+      }
+    }
+
+    /* ---------------------------------------------------
+       BAZAAR CARD - LARGER & MORE PROMINENT
+    --------------------------------------------------- */
+    .bazaar-card {
+      background: linear-gradient(135deg, #ffb347 0%, #ffcc33 100%);
+      color: #702C00;
+      font-weight: 600;
+      border: 2px solid #FA8E00;
+      border-radius: 10px;
+      padding: 2rem 1rem;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+      transition: transform 0.3s, box-shadow 0.3s, opacity 0.3s;
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    .bazaar-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+      opacity: 0.95;
+    }
+    .bazaar-title {
+      font-size: 1.6rem;
+      margin-bottom: 0.5rem;
+    }
+    .bazaar-desc {
+      color: #4e2400;
+      font-size: 1rem;
+      margin-top: 0.5rem;
+      text-align: center;
+    }
+
+    /* ---------------------------------------------------
+       SMALLER CTA CARDS (Create, Join, Xchange)
+    --------------------------------------------------- */
+    .small-cta-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .cta-card {
+      background-color: #f2f2f2;
+      color: #333;
+      border-radius: 8px;
+      padding: 1.5rem 1rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+      transition: transform 0.3s, box-shadow 0.3s;
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .cta-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 12px rgba(0,0,0,0.15);
+    }
+    .cta-icon {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background-color: #ddd;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 0.75rem;
+      font-size: 1.2rem;
+      color: #666;
+    }
+    .cta-title {
+      font-size: 1.1rem;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+    }
+    .cta-desc {
+      font-size: 0.9rem;
+      color: #555;
+      text-align: center;
+      line-height: 1.4;
+    }
+
+    /* ---------------------------------------------------
+       ENV LABEL & FOOTER
+    --------------------------------------------------- */
+    .env-label {
+      margin-top: 2rem;
+      font-size: 0.9rem;
+      color: #333;
+    }
+    footer {
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+      color: #333;
+      background-color: #fff;
+      box-shadow: 0 -1px 5px rgba(0,0,0,0.05);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER (Sticky) -->
+  <header>
+    <div class="logo-area">
+      <!-- Replace with your actual header logo filename -->
+      <img src="baandalogo.png" alt="Baanda Logo" class="header-logo" />
+    </div>
+    <nav class="nav-links">
+      <a href="#account">Account</a>
+      <a href="#lobby">Lobby</a>
+      <a href="#readme">Readme</a>
+      <a href="#logout">Logout</a>
+      <a href="#admin">Admin</a>
+    </nav>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main>
+    <div class="content-container">
+      <!-- Optional: a second Baanda logo in the center card -->
+      <img src="baanda-logo.png" alt="Baanda Logo" class="center-logo" />
+
+      <p class="welcome-text">
+        Welcome to the Baanda ecosystem. Choose your path below to explore, 
+        create, and connect with our vibrant community.
+      </p>
+
+      <!-- CTA GRID -->
+      <div class="cta-grid">
+        <!-- BAZAAR CARD (HIGHLY PROMINENT) -->
+        <a href="#bazaar" class="bazaar-card">
+          <div class="bazaar-title">The Bazaar – Engage</div>
+          <div class="bazaar-desc">Dive into our dynamic marketplace</div>
+        </a>
+
+        <!-- SECONDARY CARDS -->
+        <div class="small-cta-grid">
+          <!-- CREATE -->
+          <a href="#create" class="cta-card">
+            <div class="cta-icon">+</div>
+            <div class="cta-title">Create</div>
+            <div class="cta-desc">Start a project, listing, or post</div>
+          </a>
+          <!-- JOIN -->
+          <a href="#join" class="cta-card">
+            <div class="cta-icon">★</div>
+            <div class="cta-title">Join</div>
+            <div class="cta-desc">Become part of our communities</div>
+          </a>
+          <!-- XCHANGE -->
+          <a href="#xchange" class="cta-card">
+            <div class="cta-icon">⇄</div>
+            <div class="cta-title">Xchange</div>
+            <div class="cta-desc">Trade, swap, or share resources</div>
+          </a>
+        </div>
+      </div>
+
+      <!-- ENVIRONMENT LABEL -->
+      <div class="env-label">
+        Environment: QA-R
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    &copy; 2025 Baanda. All rights reserved.
+  </footer>
+
+</body>
+</html>
